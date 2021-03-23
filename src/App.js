@@ -9,9 +9,10 @@ import { DataProvider } from "./context/DataContext";
 function App() {
   return (
     <DataProvider>
-      <Container className=" d-flex justify-content-center aling-center flex-column text-center mt-4">
+      <Container >
+
         <Pokedex />
-        <ButtonCambiar />
+
       </Container>
     </DataProvider>
   );

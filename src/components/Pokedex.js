@@ -1,16 +1,27 @@
 import React, { useContext } from 'react';
+import { Container } from 'react-bootstrap';
 import { DataContext } from '../context/DataContext';
+import CardPokemon from './CardPokemon';
+
 
 
 const Pokedex = () => {
 
     //datos desde el context
-    const { data } = useContext(DataContext);
+    const { data, cargando } = useContext(DataContext);
 
     return (
         <div>
-            <h3>Pokedex</h3>
-            <pre>   {JSON.stringify(data, null, 2)}</pre>
+            {cargando ? <h1>Cargando.....</h1> : (
+                <Container>
+                    <div>
+                        {data.map((pokemon, index) => {
+                            return <CardPokemon key={index} pokemon={pokemon}/>
+                        })}
+                    </div>
+                </Container>
+            )
+            }
 
         </div>
     );
