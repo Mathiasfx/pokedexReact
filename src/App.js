@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Pokedex from "./components/Pokedex";
+import ButtonCambiar from "./components/ButtonCambiar";
+import Container from 'react-bootstrap/Container'
+import React from 'react';
+import { DataProvider } from "./context/DataContext";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataProvider>
+      <Container className=" d-flex justify-content-center aling-center flex-column text-center mt-4">
+        <Pokedex />
+        <ButtonCambiar />
+      </Container>
+    </DataProvider>
   );
 }
 
