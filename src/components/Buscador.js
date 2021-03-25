@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { DataContext } from '../context/DataContext';
+import { ContenedorForm, FormularioPokemon } from '../styled/styles';
+import { Button, Form } from 'react-bootstrap'
+import * as Icon from 'react-bootstrap-icons';
+
+
 
 const Buscador = () => {
-    return (<h2>Buscador Pokemont</h2>);
+
+    const [busqueda, setBusqueda] = useState('');
+
+    //datos desde el context
+    const { Buscar } = useContext(DataContext);
+
+    return (
+        <ContenedorForm>
+            <FormularioPokemon>
+                <Form.Control onChange={(e) => setBusqueda(e.target.value)} type="text" placeholder="Buscar Pokemon....." />
+                <Button onClick={(e) => Buscar(busqueda)} variant="secondary" className="ml-2"><Icon.Search /></Button>
+            </FormularioPokemon>
+        </ContenedorForm>
+
+
+
+    );
 }
 
 export default Buscador;
