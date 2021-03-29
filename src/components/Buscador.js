@@ -16,8 +16,8 @@ const Buscador = () => {
     return (
         <ContenedorForm>
             <FormularioPokemon>
-                <Form.Control onChange={(e) => setBusqueda(e.target.value)} type="text" placeholder="Buscar Pokemon....." />
-                <Button onClick={(e) => Buscar(busqueda)} variant="secondary" className="ml-2"><Icon.Search /></Button>
+                <Form.Control onChange={(e) => { e.preventDefault(); setBusqueda(e.target.value) }} type="text" placeholder="Buscar Pokemon....." />
+                <Button onClick={(e) => { e.preventDefault(); Buscar(busqueda.toLowerCase()) }} variant="secondary" className="ml-2"><Icon.Search /></Button>
             </FormularioPokemon>
         </ContenedorForm>
 

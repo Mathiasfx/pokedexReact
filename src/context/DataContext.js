@@ -1,6 +1,6 @@
-import { getDefaultNormalizer } from "@testing-library/dom";
 import { createContext, useState, useEffect } from "react";
-import { getData, ObtenerPokemon } from '../services/Data';
+import { getData, ObtenerPokemon, ObtenerBuscado, ObtenerSiguiente, ObtenerAnterior } from '../services/Data';
+import swal from 'sweetalert';
 
 
 export const DataContext = createContext();
@@ -17,6 +17,7 @@ export const DataProvider = ({ children }) => {
     const [anteriorURL, setAnterior] = useState('');
     const [cargando, setCargando] = useState(true);
     const [buscando, setBuscando] = useState('');
+    const [seleccionado, setSeleccionado] = useState({});
 
     const endpointUrl = 'https://pokeapi.co/api/v2/pokemon';
 
@@ -31,7 +32,6 @@ export const DataProvider = ({ children }) => {
             setCargando(false);
         }
         fetchData();
-
     }, []);
 
     //Paginador
@@ -56,8 +56,46 @@ export const DataProvider = ({ children }) => {
 
     //Buscador
     const Buscar = async (query) => {
-        console.log(query);
+        setCargando(true);
+        //validar
+        if (query.trim() !== '') {
+            let data = await ObtenerBuscado(query);
+            console.log(data);
+            setBuscando(data);
+            setCargando(false);
+        } else {
+            swal({
+                title: "Debes ingresar un Nombre",
+                icon: "warning",
+            });
+            let response = await getData(endpointUrl);
+            setSiguiente(response.next);
+            setAnterior(response.previous);
+            await cargarPokemon(response.results);
+            setCargando(false);
+        }
+    }
 
+    //Seleccionar Pokemon al hacer click
+    const SeleccionarPokemon = async (e, poke) => {
+        e.preventDefault();
+        let data = await ObtenerBuscado(poke);
+        console.log(data);
+        setSeleccionado(data);
+    }
+
+    //Seleccionar Siguiente pokemon en detalle
+    const SeleccionarSiguiente = async (e, id) => {
+        e.preventDefault();
+        let data = await ObtenerSiguiente(id);
+        setSeleccionado(data);
+    }
+
+    //Seleccionar pokemon anterior detalle
+    const SeleccionarAnterior = async (e, id) => {
+        e.preventDefault();
+        let data = await ObtenerAnterior(id);
+        setSeleccionado(data);
     }
 
 
@@ -70,7 +108,9 @@ export const DataProvider = ({ children }) => {
         setData(pokemones);
     }
 
-    console.log(data);
+
+
+
 
     return (
         <DataContext.Provider value={{
@@ -79,7 +119,14 @@ export const DataProvider = ({ children }) => {
             paginaSiguiente,
             paginaAnterior,
             anteriorURL,
-            Buscar
+            Buscar,
+            buscando,
+            setBuscando,
+            seleccionado,
+            setSeleccionado,
+            SeleccionarPokemon,
+            SeleccionarSiguiente,
+            SeleccionarAnterior
         }}>
             {children}
         </DataContext.Provider>
