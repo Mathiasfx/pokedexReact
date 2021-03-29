@@ -18,7 +18,7 @@ export const DataProvider = ({ children }) => {
     const [cargando, setCargando] = useState(true);
     const [buscando, setBuscando] = useState('');
     const [seleccionado, setSeleccionado] = useState({});
-
+    //enpoint - colocar en el .env
     const endpointUrl = 'https://pokeapi.co/api/v2/pokemon';
 
 
@@ -60,10 +60,10 @@ export const DataProvider = ({ children }) => {
         //validar
         if (query.trim() !== '') {
             let data = await ObtenerBuscado(query);
-            console.log(data);
             setBuscando(data);
             setCargando(false);
         } else {
+            // Mostrar Error
             swal({
                 title: "Debes ingresar un Nombre",
                 icon: "warning",
@@ -80,7 +80,6 @@ export const DataProvider = ({ children }) => {
     const SeleccionarPokemon = async (e, poke) => {
         e.preventDefault();
         let data = await ObtenerBuscado(poke);
-        console.log(data);
         setSeleccionado(data);
     }
 
@@ -113,6 +112,7 @@ export const DataProvider = ({ children }) => {
 
 
     return (
+        //Provider Context
         <DataContext.Provider value={{
             data,
             cargando,

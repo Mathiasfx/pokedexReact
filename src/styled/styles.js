@@ -92,22 +92,24 @@ flex-direction: row;
 text-align:center;
 `;
 
+//Styles Detalles Card
 export const DetalleCard = styled.div`
 margin:1rem;
 padding:1rem;
 display:flex;
 align-items:center;
 justify-content:center;
-
 background-color: white;
 position:fixed;
 bottom:0;
 border-radius: 1rem;
 width:100%;
-height:450px;
-min-width:900px;
-min-height: 600px;
+height:500px;
 box-shadow: 2px 2px 5px #999;
+
+${mobile}{
+    height:90vh;
+}
 
 && h2 {
     font-size: 35px;

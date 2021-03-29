@@ -8,7 +8,12 @@ import { Col, Container, Row, Button } from 'react-bootstrap';
 
 const PokemonDetalle = () => {
     //datos desde el context
-    const { seleccionado, setSeleccionado, SeleccionarSiguiente, SeleccionarAnterior } = useContext(DataContext);
+    const {
+        seleccionado,
+        setSeleccionado,
+        SeleccionarSiguiente,
+        SeleccionarAnterior
+    } = useContext(DataContext);
 
 
 

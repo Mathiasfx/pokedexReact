@@ -1,5 +1,4 @@
 import Pokedex from "./components/Pokedex";
-import ButtonCambiar from "./components/ButtonCambiar";
 import Container from 'react-bootstrap/Container'
 import React from 'react';
 import { DataProvider } from "./context/DataContext";

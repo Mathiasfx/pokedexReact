@@ -6,8 +6,11 @@ import * as Icon from 'react-bootstrap-icons';
 
 
 
+
 const Buscador = () => {
 
+
+    // string de busqueda
     const [busqueda, setBusqueda] = useState('');
 
     //datos desde el context
@@ -25,5 +28,6 @@ const Buscador = () => {
 
     );
 }
+
 
 export default Buscador;

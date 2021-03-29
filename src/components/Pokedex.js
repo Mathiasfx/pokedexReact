@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { DataContext } from '../context/DataContext';
 import CardPokemon from './CardPokemon';
@@ -10,8 +10,6 @@ import { Spinner, Button } from 'react-bootstrap'
 
 
 const Pokedex = () => {
-
-
 
 
     //datos desde el context
@@ -49,8 +47,8 @@ const Pokedex = () => {
 
 
                     <div className='d-flex justify-content-center text-center mt-4 mb-4'>
-                        {console.log(seleccionado)}
-                        {JSON.stringify(seleccionado) == '{}' ? null : <PokemonDetalle />}
+
+                        {JSON.stringify(seleccionado) === '{}' ? null : <PokemonDetalle />}
 
                     </div>
 
