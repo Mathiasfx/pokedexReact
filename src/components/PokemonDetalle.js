@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { DetalleCard, CardType, ContenedorBotones, ButtonContinue } from '../styled/styles';
+import { DetalleCard, CardType, ContenedorBotones, ButtonContinue, ContenedorImgpoke } from '../styled/styles';
 import { DataContext } from '../context/DataContext';
 import { PrimeraLetraMayuscula } from '../help/index';
 import { Col, Container, Row, Button } from 'react-bootstrap';
@@ -26,7 +26,13 @@ const PokemonDetalle = () => {
                     <ButtonContinue onClick={(e) => SeleccionarSiguiente(e, seleccionado.id + 1)}>#{(seleccionado.id + 1).toString().padStart(3, '0')}</ButtonContinue>
                 </ContenedorBotones>
                 <Row>
-                    {<Col><img src={seleccionado.sprites.other.dream_world.front_default} height="85%" alt={seleccionado.name} /></Col>}
+                    {<Col>
+                        <ContenedorImgpoke>
+                            <img src={seleccionado.sprites.other.dream_world.front_default} className="img-fluid" alt={seleccionado.name} />
+
+                        </ContenedorImgpoke>
+
+                    </Col>}
                     <Col>
                         <div className="d-flex flex-row text-left my-5">
                             <h2>{PrimeraLetraMayuscula(seleccionado.name)}  </h2> <span>#{seleccionado.id.toString().padStart(3, '0')}</span>

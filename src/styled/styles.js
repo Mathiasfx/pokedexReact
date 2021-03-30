@@ -104,11 +104,12 @@ position:fixed;
 bottom:0;
 border-radius: 1rem;
 width:100%;
-height:500px;
+height:auto;
+max-height:600px;
 box-shadow: 2px 2px 5px #999;
 
 ${mobile}{
-    height:90vh;
+    height:95vh;
 }
 
 && h2 {
@@ -165,4 +166,18 @@ export const ButtonContinue = styled.button`
 background-color:transparent;
 outline:none;
 border:0.5px solid gray;
+`;
+
+export const ContenedorImgpoke = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+width:auto;
+max-width:250px;
+
+${mobile}{
+    max-height:200px;
+    max-width:200px;
+
+}
 `;
